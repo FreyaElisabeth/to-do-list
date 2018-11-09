@@ -1,3 +1,7 @@
+.ToDo {
+  padding: 0.25em;
+}
+
 .done {
   text-decoration: line-through;
 }

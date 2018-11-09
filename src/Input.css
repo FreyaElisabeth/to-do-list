@@ -1,0 +1,11 @@
+input {
+  margin-top: 0.5em;
+  margin-bottom: 1em;
+  font-size: 22px;
+  caret-color: #151d36;
+  color: #151d36;
+}
+
+input:focus {
+  outline: 0 0 5px #a6fde5;
+}

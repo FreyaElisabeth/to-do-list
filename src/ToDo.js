@@ -3,10 +3,10 @@ import './ToDo.css'
 
 export default class ToDo extends Component {
   render() {
-    const { text, onClick } = this.props
+    const { text, onClick, className } = this.props
 
     return (
-      <li className="ToDo" onClick={onClick}>
+      <li className={className} onClick={onClick}>
         {text}
       </li>
     )

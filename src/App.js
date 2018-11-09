@@ -5,12 +5,21 @@ import ToDo from './ToDo'
 
 export default class App extends Component {
   state = {
-    todos: [
-      { text: 'Create', done: false },
-      { text: 'Eat', done: false },
-      { text: 'Sleep', done: false },
-      { text: 'Repeat', done: false }
+    todos: []
+  }
+
+  addInputToArray = event => {
+    const newTodos = [
+      { text: event.target.value, done: false },
+      ...this.state.todos
     ]
+    this.setState({ todos: newTodos })
+  }
+
+  onEnter = event => {
+    if (event.key === 'Enter') {
+      this.addInputToArray(event)
+    }
   }
 
   updateTodosArray = (index, arr) => {
@@ -25,7 +34,7 @@ export default class App extends Component {
   render() {
     return (
       <div className="App">
-        <Input />
+        <Input onSubmit={event => this.onEnter(event)} />
         <ul className="listContainer">
           {this.state.todos.map((todo, index, arr) => (
             <ToDo

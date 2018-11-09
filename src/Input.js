@@ -5,12 +5,13 @@ export default class Input extends Component {
   render() {
     return (
       <label htmlFor="input">
-        What do you want to remember?
+        What do you want to keep in mind?
         <input
           type="text"
           name="input"
-          placeholder="Take a break"
+          placeholder="Breathe and smile :)"
           className="Input"
+          onKeyUp={this.props.onSubmit}
         />
       </label>
     )

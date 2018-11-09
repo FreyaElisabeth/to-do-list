@@ -6,7 +6,7 @@ import DeleteBtn from './DeleteBtn'
 
 export default class App extends Component {
   state = {
-    todos: []
+    todos: this.loadFromLocalStorage()
   }
 
   addInputToArray = event => {
@@ -43,8 +43,13 @@ export default class App extends Component {
     localStorage.setItem('to-do list', JSON.stringify(this.state.todos))
   }
 
+  loadFromLocalStorage() {
+    return JSON.parse(localStorage.getItem('to-do list'))
+  }
+
   render() {
     this.saveToLocalStorage()
+
     return (
       <div className="App">
         <Input onSubmit={event => this.onEnter(event)} />

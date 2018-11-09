@@ -38,7 +38,13 @@ export default class App extends Component {
     this.setState({ todos: newTodos })
   }
 
+  saveToLocalStorage() {
+    console.log('saved to localStorage')
+    localStorage.setItem('to-do list', JSON.stringify(this.state.todos))
+  }
+
   render() {
+    this.saveToLocalStorage()
     return (
       <div className="App">
         <Input onSubmit={event => this.onEnter(event)} />
@@ -53,7 +59,10 @@ export default class App extends Component {
               />
               <DeleteBtn
                 key={`btn${index}`}
-                onClick={() => this.deleteTodoItem(index, arr)}
+                onClick={() => {
+                  this.deleteTodoItem(index, arr)
+                  this.saveToLocalStorage()
+                }}
               />
             </div>
           ))}

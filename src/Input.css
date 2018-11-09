@@ -4,6 +4,7 @@ input {
   font-size: 22px;
   caret-color: #151d36;
   color: #151d36;
+  width: 80vw;
 }
 
 input:focus {

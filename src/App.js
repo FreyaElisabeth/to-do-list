@@ -6,7 +6,14 @@ import DeleteBtn from './DeleteBtn'
 
 export default class App extends Component {
   state = {
-    todos: this.loadFromLocalStorage()
+    todos: this.loadArray()
+  }
+
+  onEnter = event => {
+    if (event.key === 'Enter') {
+      this.addInputToArray(event)
+      event.target.value = ''
+    }
   }
 
   addInputToArray = event => {
@@ -17,19 +24,7 @@ export default class App extends Component {
     this.setState({ todos: newTodos })
   }
 
-  deleteTodoItem = (index, arr) => {
-    const newTodos = [...arr.slice(0, index), ...arr.slice(index + 1)]
-    this.setState({ todos: newTodos })
-  }
-
-  onEnter = event => {
-    if (event.key === 'Enter') {
-      this.addInputToArray(event)
-      event.target.value = ''
-    }
-  }
-
-  updateTodosArray = (index, arr) => {
+  updateArray = (index, arr) => {
     const newTodos = [
       ...arr.slice(0, index),
       { ...arr[index], done: !this.state.todos[index].done },
@@ -38,9 +33,17 @@ export default class App extends Component {
     this.setState({ todos: newTodos })
   }
 
+  deleteTodoItem = (index, arr) => {
+    const newTodos = [...arr.slice(0, index), ...arr.slice(index + 1)]
+    this.setState({ todos: newTodos })
+  }
+
   saveToLocalStorage() {
-    console.log('saved to localStorage')
     localStorage.setItem('to-do list', JSON.stringify(this.state.todos))
+  }
+
+  loadArray() {
+    return this.loadFromLocalStorage() || []
   }
 
   loadFromLocalStorage() {
@@ -60,7 +63,7 @@ export default class App extends Component {
                 key={`todo${index}`}
                 text={todo.text}
                 className={this.state.todos[index].done ? 'ToDo done' : 'ToDo'}
-                onClick={() => this.updateTodosArray(index, arr)}
+                onClick={() => this.updateArray(index, arr)}
               />
               <DeleteBtn
                 key={`btn${index}`}

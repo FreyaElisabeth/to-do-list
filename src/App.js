@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
+import uid from 'uid'
 import './App.css'
 import Input from './Input'
 import ToDo from './ToDo'
-import DeleteBtn from './DeleteBtn'
+import Separator from './Separator'
 
 export default class App extends Component {
   state = {
@@ -14,29 +15,12 @@ export default class App extends Component {
     return (
       <div className="App">
         <Input onSubmit={event => this.onEnter(event)} />
-        <ul className="listContainer">{this.renderToDos()}</ul>
+        <Separator text="to do" />
+        {this.renderOpenToDos()}
+        <Separator text="done" />
+        {this.renderDoneToDos()}
       </div>
     )
-  }
-
-  renderToDos() {
-    return this.state.todos.map((todo, index, arr) => (
-      <div key={`listItem${index}`} className="listItem">
-        <ToDo
-          key={`todo${index}`}
-          text={todo.text}
-          className={this.state.todos[index].done ? 'ToDo done' : 'ToDo'}
-          onClick={() => this.updateArray(index, arr)}
-        />
-        <DeleteBtn
-          key={`btn${index}`}
-          onClick={() => {
-            this.deleteTodoItem(index, arr)
-            this.save()
-          }}
-        />
-      </div>
-    ))
   }
 
   onEnter = event => {
@@ -46,26 +30,55 @@ export default class App extends Component {
     }
   }
 
-  addInputToArray = event => {
-    const newTodos = [
-      { text: event.target.value, done: false },
-      ...this.state.todos
-    ]
-    this.setState({ todos: newTodos })
+  renderOpenToDos() {
+    return this.state.todos
+      .filter(todo => !todo.done)
+      .map(this.renderSingleToDo)
   }
 
-  updateArray = (index, arr) => {
+  renderDoneToDos() {
+    return this.state.todos.filter(todo => todo.done).map(this.renderSingleToDo)
+  }
+
+  renderSingleToDo = todo => {
+    return (
+      <ToDo
+        text={todo.text}
+        done={todo.done}
+        onToggle={() => this.updateArray(todo.id)}
+        onDelete={() => this.deleteTodoItem(todo.id)}
+      />
+    )
+  }
+
+  addInputToArray = event => {
     this.setState({
       todos: [
-        ...arr.slice(0, index),
-        { ...arr[index], done: !this.state.todos[index].done },
-        ...arr.slice(index + 1)
+        { text: event.target.value, done: false, id: uid() },
+        ...this.state.todos
       ]
     })
   }
 
-  deleteTodoItem = (index, arr) => {
-    this.setState({ todos: [...arr.slice(0, index), ...arr.slice(index + 1)] })
+  updateArray = id => {
+    const { todos } = this.state
+    const index = todos.findIndex(todo => todo.id === id)
+    const todo = todos[index]
+    this.setState({
+      todos: [
+        ...todos.slice(0, index),
+        { ...todo, done: !todo.done },
+        ...todos.slice(index + 1)
+      ]
+    })
+  }
+
+  deleteTodoItem = id => {
+    const { todos } = this.state
+    const index = todos.findIndex(todo => todo.id === id)
+    this.setState({
+      todos: [...todos.slice(0, index), ...todos.slice(index + 1)]
+    })
   }
 
   loadArray() {

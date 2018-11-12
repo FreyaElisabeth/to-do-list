@@ -1,0 +1,15 @@
+.Separator {
+  display: flex;
+  align-items: center;
+}
+
+.Separator .hr {
+  width: 100%;
+  margin: 0.75em 0;
+  border-bottom: 1px solid #a6fde5;
+}
+
+.Separator span {
+  white-space: nowrap;
+  padding: 0 1em;
+}

@@ -1,24 +1,12 @@
 .App {
   background: #151d36;
-  box-sizing: border-box;
   color: #a6fde5;
-  display: grid;
   font-size: 22px;
-  grid-auto-rows: 2em;
-  grid-gap: 0.5em;
-  height: 100vh;
+  min-height: 100vh;
   padding: 1em;
-  width: 100vw;
 }
 
-.listContainer {
-  padding-top: 1em;
-  padding-left: 1em;
-}
-
-.listItem {
+.Wrapper {
   display: grid;
-  grid-template-columns: 5fr 1fr;
-  justify-content: center;
-  align-items: center;
+  grid-auto-rows: 1.5em;
 }

@@ -1,6 +1,5 @@
 input {
-  margin-top: 0.5em;
-  margin-bottom: 1em;
+  margin: 0.5em 0 1em 0;
   font-size: 22px;
   caret-color: #151d36;
   color: #151d36;

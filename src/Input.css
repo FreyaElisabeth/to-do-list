@@ -5,8 +5,10 @@ input {
   caret-color: #151d36;
   color: #151d36;
   width: 80vw;
+  border: none;
 }
 
 input:focus {
-  outline: 0 0 5px #a6fde5;
+  outline: none;
+  box-shadow: 0 0 2px 2px #a6fde5;
 }

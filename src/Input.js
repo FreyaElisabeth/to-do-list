@@ -7,7 +7,6 @@ export default class Input extends Component {
       <label htmlFor="input">
         What do you want to keep in mind?
         <input
-          type="text"
           name="input"
           placeholder="Breathe and smile :)"
           className="Input"

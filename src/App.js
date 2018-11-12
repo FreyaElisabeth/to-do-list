@@ -9,6 +9,36 @@ export default class App extends Component {
     todos: this.loadArray()
   }
 
+  render() {
+    this.save()
+    return (
+      <div className="App">
+        <Input onSubmit={event => this.onEnter(event)} />
+        <ul className="listContainer">{this.renderToDos()}</ul>
+      </div>
+    )
+  }
+
+  renderToDos() {
+    return this.state.todos.map((todo, index, arr) => (
+      <div key={`listItem${index}`} className="listItem">
+        <ToDo
+          key={`todo${index}`}
+          text={todo.text}
+          className={this.state.todos[index].done ? 'ToDo done' : 'ToDo'}
+          onClick={() => this.updateArray(index, arr)}
+        />
+        <DeleteBtn
+          key={`btn${index}`}
+          onClick={() => {
+            this.deleteTodoItem(index, arr)
+            this.save()
+          }}
+        />
+      </div>
+    ))
+  }
+
   onEnter = event => {
     if (event.key === 'Enter') {
       this.addInputToArray(event)
@@ -25,57 +55,28 @@ export default class App extends Component {
   }
 
   updateArray = (index, arr) => {
-    const newTodos = [
-      ...arr.slice(0, index),
-      { ...arr[index], done: !this.state.todos[index].done },
-      ...arr.slice(index + 1)
-    ]
-    this.setState({ todos: newTodos })
+    this.setState({
+      todos: [
+        ...arr.slice(0, index),
+        { ...arr[index], done: !this.state.todos[index].done },
+        ...arr.slice(index + 1)
+      ]
+    })
   }
 
   deleteTodoItem = (index, arr) => {
-    const newTodos = [...arr.slice(0, index), ...arr.slice(index + 1)]
-    this.setState({ todos: newTodos })
-  }
-
-  saveToLocalStorage() {
-    localStorage.setItem('to-do list', JSON.stringify(this.state.todos))
+    this.setState({ todos: [...arr.slice(0, index), ...arr.slice(index + 1)] })
   }
 
   loadArray() {
-    return this.loadFromLocalStorage() || []
+    try {
+      return JSON.parse(localStorage.getItem('to-do list')) || []
+    } catch (err) {
+      return []
+    }
   }
 
-  loadFromLocalStorage() {
-    return JSON.parse(localStorage.getItem('to-do list'))
-  }
-
-  render() {
-    this.saveToLocalStorage()
-
-    return (
-      <div className="App">
-        <Input onSubmit={event => this.onEnter(event)} />
-        <ul className="listContainer">
-          {this.state.todos.map((todo, index, arr) => (
-            <div key={`listItem${index}`} className="listItem">
-              <ToDo
-                key={`todo${index}`}
-                text={todo.text}
-                className={this.state.todos[index].done ? 'ToDo done' : 'ToDo'}
-                onClick={() => this.updateArray(index, arr)}
-              />
-              <DeleteBtn
-                key={`btn${index}`}
-                onClick={() => {
-                  this.deleteTodoItem(index, arr)
-                  this.saveToLocalStorage()
-                }}
-              />
-            </div>
-          ))}
-        </ul>
-      </div>
-    )
+  save() {
+    localStorage.setItem('to-do list', JSON.stringify(this.state.todos))
   }
 }

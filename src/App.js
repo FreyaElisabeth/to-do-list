@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import uid from 'uid'
 import './App.css'
+
 import Input from './Input'
 import ToDo from './ToDo'
 import Separator from './Separator'
@@ -43,6 +44,7 @@ export default class App extends Component {
   renderSingleToDo = todo => {
     return (
       <ToDo
+        key={todo.id}
         text={todo.text}
         done={todo.done}
         onToggle={() => this.updateArray(todo.id)}

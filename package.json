@@ -6,13 +6,14 @@
     "react": "^16.6.1",
     "react-dom": "^16.6.1",
     "react-scripts": "2.1.1",
+    "styled-components": "^4.1.1",
     "uid": "0.0.2"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build && rm -rf docs && mv build docs",
+    "start": "craco start",
+    "build": "craco build && rm -rf docs && mv build docs",
     "deploy": "npm run build && cd docs && now --public",
-    "test": "react-scripts test",
+    "test": "craco test",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {

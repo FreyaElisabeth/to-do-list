@@ -1,19 +1,46 @@
 import React, { Component } from 'react'
-import './ToDo.css'
+import styled from 'styled-components'
+
+const Wrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 0.75em;
+  margin-bottom: 0.75em;
+
+  .done {
+    text-decoration: line-through;
+  }
+`
+
+const Button = styled.button`
+  width: 1.2em;
+  height: 1.2em;
+  font-size: 22px;
+  border: none;
+  color: #151d36;
+  border-radius: 50%;
+  background: #a6fde5;
+  text-align: center;
+  vertical-align: center;
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 2px 2px #a6fde5;
+  }
+`
 
 export default class ToDo extends Component {
   render() {
     const { text, onToggle, onDelete, done } = this.props
 
     return (
-      <div className="ToDo">
+      <Wrapper>
         <span className={done ? 'done' : ''} onClick={onToggle}>
           {text}
         </span>
-        <button className="deleteBtn" onClick={onDelete}>
-          &times;
-        </button>
-      </div>
+        <Button onClick={onDelete}>&times;</Button>
+      </Wrapper>
     )
   }
 }

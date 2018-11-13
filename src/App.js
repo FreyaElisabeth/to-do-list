@@ -1,10 +1,19 @@
 import React, { Component } from 'react'
 import uid from 'uid'
-import './App.css'
+import styled from 'styled-components'
 
 import Input from './Input'
 import ToDo from './ToDo'
 import Separator from './Separator'
+import ProgressBar from './ProgressBar'
+
+const Wrapper = styled.div`
+  background: #151d36;
+  color: #a6fde5;
+  font-size: 22px;
+  min-height: 100vh;
+  padding: 1em;
+`
 
 export default class App extends Component {
   state = {
@@ -14,13 +23,14 @@ export default class App extends Component {
   render() {
     this.save()
     return (
-      <div className="App">
+      <Wrapper>
         <Input onSubmit={event => this.onEnter(event)} />
+        <ProgressBar width={this.determineProgress()} />
         <Separator text="to do" />
         {this.renderOpenToDos()}
         <Separator text="done" />
         {this.renderDoneToDos()}
-      </div>
+      </Wrapper>
     )
   }
 
@@ -29,6 +39,12 @@ export default class App extends Component {
       this.addInputToArray(event)
       event.target.value = ''
     }
+  }
+
+  determineProgress() {
+    const { todos } = this.state
+    const result = todos.filter(todo => todo.done).length / todos.length
+    return result
   }
 
   renderOpenToDos() {

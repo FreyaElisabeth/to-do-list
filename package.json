@@ -2,6 +2,7 @@
   "name": "to-do-list",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://freyaelisabeth.github.io/to-do-list/",
   "dependencies": {
     "react": "^16.6.1",
     "react-dom": "^16.6.1",
@@ -11,8 +12,9 @@
   },
   "scripts": {
     "start": "craco start",
-    "build": "craco build && rm -rf docs && mv build docs",
-    "deploy": "npm run build && cd docs && now --public",
+    "build": "craco build",
+    "predeploy": "npm run build",
+    "deploy": "now --public && gh-pages -d build",
     "test": "craco test",
     "eject": "react-scripts eject"
   },
@@ -27,6 +29,7 @@
   ],
   "devDependencies": {
     "@craco/craco": "^2.2.3",
-    "babel-plugin-styled-components": "^1.8.0"
+    "babel-plugin-styled-components": "^1.8.0",
+    "gh-pages": "^2.0.1"
   }
 }

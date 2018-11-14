@@ -24,9 +24,18 @@ export default class Input extends Component {
           name="input"
           placeholder="Breathe and smile :)"
           className="Input"
-          onKeyUp={this.props.onSubmit}
+          onKeyUp={event =>
+            event.key === 'Enter' ? this.handleSubmit(event) : ''
+          }
         />
       </label>
     )
+  }
+
+  handleSubmit(event) {
+    if (event.key === 'Enter') {
+      this.props.onSubmit(event)
+      event.target.value = ''
+    }
   }
 }

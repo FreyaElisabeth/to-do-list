@@ -8,7 +8,7 @@ import Separator from './Separator'
 import ProgressBar from './ProgressBar'
 import ToggleButton from './ToggleButton'
 
-const Wrapper = styled.div`
+export const Wrapper = styled.div`
   background: #151d36;
   color: #a6fde5;
   font-size: 22px;
@@ -25,7 +25,7 @@ export default class App extends Component {
     this.save()
     return (
       <Wrapper>
-        <Input onSubmit={event => this.onEnter(event)} />
+        <Input onSubmit={event => this.addInputToArray(event)} />
         <ProgressBar width={this.determineProgress()} />
         <ToggleButton
           defaultText="hide done tasks"
@@ -39,13 +39,6 @@ export default class App extends Component {
         {this.renderDoneToDos()}
       </Wrapper>
     )
-  }
-
-  onEnter = event => {
-    if (event.key === 'Enter') {
-      this.addInputToArray(event)
-      event.target.value = ''
-    }
   }
 
   determineProgress() {

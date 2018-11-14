@@ -6,6 +6,7 @@ import Input from './Input'
 import ToDo from './ToDo'
 import Separator from './Separator'
 import ProgressBar from './ProgressBar'
+import ToggleButton from './ToggleButton'
 
 const Wrapper = styled.div`
   background: #151d36;
@@ -26,6 +27,12 @@ export default class App extends Component {
       <Wrapper>
         <Input onSubmit={event => this.onEnter(event)} />
         <ProgressBar width={this.determineProgress()} />
+        <ToggleButton
+          defaultText="hide done tasks"
+          alternativeText="show done tasks"
+          hideDoneTasks={this.hideDoneTasks}
+          initialDefault={true}
+        />
         <Separator text="to do" />
         {this.renderOpenToDos()}
         <Separator text="done" />
@@ -43,8 +50,11 @@ export default class App extends Component {
 
   determineProgress() {
     const { todos } = this.state
-    const result = todos.filter(todo => todo.done).length / todos.length
-    return result
+    return todos.filter(todo => todo.done).length / todos.length
+  }
+
+  hideDoneTasks() {
+    console.log('I hide tasks')
   }
 
   renderOpenToDos() {

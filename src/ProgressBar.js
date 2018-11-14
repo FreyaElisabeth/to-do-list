@@ -10,6 +10,7 @@ const Progress = styled.div`
   background: ${turquoise};
   border-radius: 9px;
   height: 18px;
+  transition: width 0.5s ease;
   width: ${props => props.width}%;
 `
 
@@ -22,3 +23,5 @@ export default class ProgressBar extends Component {
     )
   }
 }
+
+//auch als styled.div mit zus. Element &::after möglich

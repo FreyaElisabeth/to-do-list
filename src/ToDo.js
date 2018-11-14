@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
+import { turquoise, darkblue } from './colors'
 
 const Wrapper = styled.div`
   display: flex;
@@ -18,9 +19,9 @@ const Button = styled.button`
   height: 1.2em;
   font-size: 22px;
   border: none;
-  color: #151d36;
+  color: ${darkblue};
   border-radius: 50%;
-  background: #a6fde5;
+  background: ${turquoise};
   text-align: center;
   vertical-align: center;
 

@@ -17,13 +17,13 @@ const InputField = styled.input`
 
 export default class Input extends Component {
   render() {
+    const { name, placeholder, label } = this.props
     return (
-      <label htmlFor="input">
-        What do you want to keep in mind?
+      <label htmlFor={name}>
+        {label}
         <InputField
-          name="input"
-          placeholder="Breathe and smile :)"
-          className="Input"
+          name={name}
+          placeholder={placeholder}
           onKeyUp={event =>
             event.key === 'Enter' ? this.handleSubmit(event) : ''
           }

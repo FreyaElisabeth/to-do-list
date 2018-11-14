@@ -25,7 +25,12 @@ export default class App extends Component {
     this.save()
     return (
       <Wrapper>
-        <Input onSubmit={event => this.addInputToArray(event)} />
+        <Input
+          name="task-input"
+          label="What do you want to keep in mind?"
+          placeholder="Breathe and smile :)"
+          onSubmit={event => this.addInputToArray(event)}
+        />
         <ProgressBar width={this.determineProgress()} />
         <ToggleButton
           defaultText="hide done tasks"

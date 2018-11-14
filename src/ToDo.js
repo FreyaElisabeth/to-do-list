@@ -24,6 +24,7 @@ const Button = styled.button`
   background: ${turquoise};
   text-align: center;
   vertical-align: center;
+  margin-left: 1em;
 
   &:focus {
     outline: none;

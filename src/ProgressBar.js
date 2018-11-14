@@ -5,10 +5,12 @@ import { turquoise } from './colors'
 const Wrapper = styled.div`
   border: 1px solid ${turquoise};
   border-radius: 9px;
+  margin: 0.75em 0;
+  overflow: hidden;
 `
 const Progress = styled.div`
   background: ${turquoise};
-  border-radius: 9px;
+  border-radius: 0 8px 8px 0;
   height: 18px;
   transition: width 0.5s ease;
   width: ${props => props.width}%;

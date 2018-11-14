@@ -14,7 +14,7 @@
     "start": "craco start",
     "build": "craco build",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
+    "deploy": "rm -rf docs && gh-pages -d build && mv build docs",
     "test": "craco test",
     "eject": "react-scripts eject",
     "storybook": "start-storybook -p 9009 -s public",

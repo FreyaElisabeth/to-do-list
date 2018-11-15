@@ -74,13 +74,13 @@ storiesOf('ToggleButton', module).add('both states', () => (
       defaultText={text('Your default text here:', 'hide done tasks')}
       alternativeText={text('Your alternative text here:', 'show done tasks')}
       hideDoneTasks={action('toggleText')}
-      initialDefault={boolean('Is this toggled?', false)}
+      isDefault={boolean('Is this toggled?', false)}
     />
     <ToggleButton
       defaultText="hide done tasks"
       alternativeText="show done tasks"
       hideDoneTasks={action('toggleText')}
-      initialDefault={true}
+      isDefault={true}
     />
   </React.Fragment>
 ))

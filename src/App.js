@@ -32,12 +32,6 @@ export default class App extends Component {
           onSubmit={event => this.addInputToArray(event)}
         />
         <ProgressBar width={this.determineProgress()} />
-        <ToggleButton
-          defaultText="hide done tasks"
-          alternativeText="show done tasks"
-          hideDoneTasks={this.hideDoneTasks}
-          initialDefault={true}
-        />
         <Separator text="to do" />
         {this.renderOpenToDos()}
         <Separator text="done" />

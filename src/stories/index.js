@@ -4,11 +4,11 @@ import { storiesOf } from '@storybook/react'
 import { action } from '@storybook/addon-actions'
 import { text, boolean, number } from '@storybook/addon-knobs'
 
-import ToDo from '../ToDo'
-import Input from '../Input'
-import ProgressBar from '../ProgressBar'
-import Separator from '../Separator'
-import ToggleButton from '../ToggleButton'
+import ToDo from '../components/ToDo'
+import Input from '../components/Input'
+import ProgressBar from '../components/ProgressBar'
+import Separator from '../components/Separator'
+import ToggleButton from '../components/ToggleButton'
 
 storiesOf('ToDo', module).add('all states', () => (
   <React.Fragment>

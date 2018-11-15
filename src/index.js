@@ -1,8 +1,8 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import GlobalStyle from './GlobalStyle'
+import GlobalStyle from './components/GlobalStyle'
 
-import App from './App'
+import App from './components/App'
 import * as serviceWorker from './serviceWorker'
 
 ReactDOM.render(

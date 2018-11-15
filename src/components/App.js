@@ -6,7 +6,6 @@ import Input from './Input'
 import ToDo from './ToDo'
 import Separator from './Separator'
 import ProgressBar from './ProgressBar'
-import ToggleButton from './ToggleButton'
 
 export const Wrapper = styled.div`
   background: #151d36;

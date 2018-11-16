@@ -40,16 +40,9 @@ export default class ToggleButton extends Component {
     const { isDefault } = this.state
 
     return (
-      <Button onClick={this.toggleText}>
+      <Button onClick={this.props.onClick}>
         {isDefault ? defaultText : alternativeText}
       </Button>
     )
-  }
-
-  toggleText = () => {
-    this.setState({
-      isDefault: !this.state.isDefault
-    })
-    this.props.hideDoneTasks()
   }
 }
